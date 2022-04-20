@@ -1,0 +1,8 @@
+
+default-breakpoint: 10
+default-pattern: "\\b((https|http?|ftp|file)://[-a-zA-Z\\d+&@#/%?=~_|!:,.;]*[-a-zA-Z\\d+&@#/%=~_|])"
+
+server:
+  servlet:
+    context-path: /webtools
+  port: 9090
