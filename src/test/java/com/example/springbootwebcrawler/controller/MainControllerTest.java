@@ -1,6 +1,7 @@
 package com.example.springbootwebcrawler.controller;
 
 
+import com.example.springbootwebcrawler.model.ScanRequest;
 import com.example.springbootwebcrawler.service.WebCrawlerService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,6 +1,6 @@
 package com.example.springbootwebcrawler.service;
 
-import com.example.springbootwebcrawler.controller.ScanRequest;
+import com.example.springbootwebcrawler.tools.ScanUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 public class WebCrawlerServiceImpl implements WebCrawlerService {
 
     private final ScanUtils scanUtils;
-    private final Pattern pattern;
+    private Pattern pattern;
 
     @Value("${default-pattern}")
     private String defaultPattern;
@@ -31,14 +31,14 @@ public class WebCrawlerServiceImpl implements WebCrawlerService {
     @Autowired
     public WebCrawlerServiceImpl(ScanUtils scanUtils) {
         this.scanUtils=scanUtils;
-        // create a regex pattern
-        // the url is a single word ,and we'll be excluding two types of protocols
-        pattern = Pattern.compile("\\b((https|http?|ftp|file)://[-a-zA-Z\\d+&@#/%?=~_|!:,.;]*[-a-zA-Z\\d+&@#/%=~_|])");
     }
 
     @PostConstruct
     private void init(){
-        log.warn("default-pattern:{}",defaultPattern);
+        log.info("default-pattern:{}",defaultPattern);
+        // create a regex pattern
+        // the url is a single word ,and we'll be excluding two types of protocols
+        pattern = Pattern.compile(defaultPattern);
     }
 
     @Override
@@ -68,7 +68,6 @@ public class WebCrawlerServiceImpl implements WebCrawlerService {
                 // add it to the queue for the next traverse and to the list of visited URLs.
                 breakpoint = getBreakpoint(urlQueue, visitedURLs, matcher, breakpoint,uriComponents.getHost());
 
-
                 // exit the outermost loop if it reaches the breakpoint.
                 if (breakpoint == 0) break;
             }
@@ -92,7 +91,6 @@ public class WebCrawlerServiceImpl implements WebCrawlerService {
             if (!visitedURLs.contains(currentURL)) {
                 visitedURLs.add(currentURL);
                 urlQueue.add(currentURL);
-
             }
             // exit the loop if it reaches the breakpoint.
             if (breakpoint == 0) {

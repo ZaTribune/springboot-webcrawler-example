@@ -21,3 +21,12 @@ what behaviour the program exhibits etc..
 - Spring Boot
 - Maven
 
+### Testing
+- To test the application locally, use this endpoint :  
+
+| Method | URL                                            | Body                                                                   |
+|--------|------------------------------------------------|------------------------------------------------------------------------|
+| POST   | http://localhost:9090/webtools/webcrawler/scan | `{ "url": "https://monzo.com/","breakPoint": 100,"domainOnly": false}` |
+
+## Authors
+[![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&label=Muhammad%20Ali)](https://linkedin.com/in/zatribune)

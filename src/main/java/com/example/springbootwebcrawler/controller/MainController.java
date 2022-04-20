@@ -2,6 +2,7 @@ package com.example.springbootwebcrawler.controller;
 
 
 import com.example.springbootwebcrawler.model.GenericResponse;
+import com.example.springbootwebcrawler.model.ScanRequest;
 import com.example.springbootwebcrawler.service.WebCrawlerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

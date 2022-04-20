@@ -1,4 +1,4 @@
-package com.example.springbootwebcrawler.service;
+package com.example.springbootwebcrawler.tools;
 
 import com.example.springbootwebcrawler.error.BackendException;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URL;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Component
@@ -24,19 +25,11 @@ public class ScanUtils {
 
     public String getHtmlContent(URL url){
         // reading the webpage to a String
-        StringBuilder html = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()))) {
-
-            String inputLine = bufferedReader.readLine();
-
             // read the whole HTML document specified by URL using a bufferedReader
-            while (inputLine != null) {
-                html.append(inputLine);
-                inputLine = bufferedReader.readLine();
-            }
+            return bufferedReader.lines().collect(Collectors.joining());
         } catch (IOException e) {
             throw new BackendException(String.format("Error connecting to host: %s", url),e);
         }
-        return html.toString();
     }
 }

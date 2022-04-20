@@ -1,4 +1,4 @@
-package com.example.springbootwebcrawler.controller;
+package com.example.springbootwebcrawler.model;
 
 import lombok.*;
 
