@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" name="spring-boot-kafka-logger" packages="com.zatribune.webcrawler">
+    <properties>
+        <Property name="bootstrap.servers">localhost:9092</Property>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss z} %p %m%n</Property>
+    </properties>
+
+        <Appenders>
+            <Console name="console" target="SYSTEM_OUT" follow="true">
+                <PatternLayout pattern="${LOG_PATTERN}"/>
+            </Console>
+            <Kafka name="kafkaAppender" topic="logs">
+                <JSONLayout />
+                <Property name="bootstrap.servers">${bootstrap.servers}</Property>
+            </Kafka>
+        </Appenders>
+        <Loggers>
+            <Root level="INFO">
+                <AppenderRef ref="kafkaAppender"/>
+                <AppenderRef ref="console"/>
+            </Root>
+            <Logger name="org.apache.kafka" level="WARN" />
+        </Loggers>
+    </Configuration>

@@ -1,6 +1,6 @@
-package com.example.springbootwebcrawler.tools;
+package com.zatribune.webcrawler.tools;
 
-import com.example.springbootwebcrawler.error.BackendException;
+import com.zatribune.webcrawler.error.BackendException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponents;

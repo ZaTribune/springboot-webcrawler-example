@@ -1,4 +1,4 @@
-package com.example.springbootwebcrawler;
+package com.zatribune.webcrawler;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

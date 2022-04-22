@@ -1,11 +1,15 @@
-package com.example.springbootwebcrawler.service;
+package com.zatribune.webcrawler.service;
 
-import com.example.springbootwebcrawler.tools.ScanUtils;
+import com.zatribune.webcrawler.tools.ScanUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -13,16 +17,22 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
+@TestPropertySource(properties = {
+        "default-pattern=\\\\b((https|http?|ftp|file)://[-a-zA-Z\\\\d+&@#/%?=~_|!:,.;]*[-a-zA-Z\\\\d+&@#/%=~_|])",
+})
 @ExtendWith(SpringExtension.class)
 class WebCrawlerServiceTest {
 
 
+    @Value("${default-pattern}")
+    String defaultPattern;
     private WebCrawlerService service;
 
     @MockBean
@@ -32,6 +42,7 @@ class WebCrawlerServiceTest {
     void setUp() {
 
         service=new WebCrawlerServiceImpl(scanUtils);
+        ReflectionTestUtils.setField(service,"pattern", Pattern.compile(defaultPattern));
     }
 
     @Test

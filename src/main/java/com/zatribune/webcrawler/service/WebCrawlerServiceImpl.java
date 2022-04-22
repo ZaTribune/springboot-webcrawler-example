@@ -1,6 +1,6 @@
-package com.example.springbootwebcrawler.service;
+package com.zatribune.webcrawler.service;
 
-import com.example.springbootwebcrawler.tools.ScanUtils;
+import com.zatribune.webcrawler.tools.ScanUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package com.example.springbootwebcrawler.service;
+package com.zatribune.webcrawler.service;
 
 import java.io.IOException;
 import java.util.List;

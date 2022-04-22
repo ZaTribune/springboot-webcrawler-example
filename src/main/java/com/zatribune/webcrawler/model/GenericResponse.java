@@ -1,4 +1,4 @@
-package com.example.springbootwebcrawler.model;
+package com.zatribune.webcrawler.model;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;

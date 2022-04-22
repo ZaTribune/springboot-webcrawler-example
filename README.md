@@ -15,18 +15,47 @@ but instead, you should think of it as a software design test.
 This means that we care less about a fancy UI or rendering the resulting sitemap
 nicely and more about how your program is structured, the trade-offs you've made,
 what behaviour the program exhibits etc..
+<p align="center">
+<img height="300" src="overview.svg" alt="overview"/>
+</p>
 
 ### Technologies
 - Java 11
 - Spring Boot
 - Maven
+- Kafka ([KafDrop](https://github.com/obsidiandynamics/kafdrop) for Testing)
+- Docker
 
-### Testing
+### Notes
+- This project uses an embedded "h2 database" locally.
+- Provided with spring boot actuator for monitoring & gathering metrics.
+- Current Configuration is for running locally, to configure the service 
+
+### Testing & Deployment
+- First, navigate to this docker-compose [file](https://github.com/ZaTribune/springboot-webcrawler-example/tree/master/src/main/local/docker-compose.yml) and initialize the environment using command:
+```
+docker-compose up -d
+```
+
+- Then, run the application using command:
+```
+mvn spring-boot:run
+```
+
+- To build a Docker image, there's a [DockerFile](https://github.com/ZaTribune/springboot-webcrawler-example/blob/master/DockerFile) provided - navigate and run:
+```
+mvn clean package
+docker build -f DockerFile --tag=zatribune-webcrawler:latest .
+```
 - To test the application locally, use this endpoint :  
 
 | Method | URL                                            | Body                                                                   |
 |--------|------------------------------------------------|------------------------------------------------------------------------|
 | POST   | http://localhost:9090/webtools/webcrawler/scan | `{ "url": "https://monzo.com/","breakPoint": 100,"domainOnly": false}` |
 
+- You can open the **KafDrop dashboard** and see Kafka cluster log messages via url:  
+  http://localhost:9000/
+- Also, You can open the **H2 DB dashboard** via url:  
+  http://localhost:9090/webtools/h2-console
 ## Authors
 [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&label=Muhammad%20Ali)](https://linkedin.com/in/zatribune)

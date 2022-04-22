@@ -1,4 +1,4 @@
-package com.example.springbootwebcrawler.error;
+package com.zatribune.webcrawler.error;
 
 public class BackendException extends RuntimeException{
 

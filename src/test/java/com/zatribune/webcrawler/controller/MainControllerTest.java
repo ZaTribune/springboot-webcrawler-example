@@ -1,8 +1,9 @@
-package com.example.springbootwebcrawler.controller;
+package com.zatribune.webcrawler.controller;
 
 
-import com.example.springbootwebcrawler.model.ScanRequest;
-import com.example.springbootwebcrawler.service.WebCrawlerService;
+import com.zatribune.webcrawler.model.ScanRequest;
+import com.zatribune.webcrawler.service.OperationService;
+import com.zatribune.webcrawler.service.WebCrawlerService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,10 @@ class MainControllerTest {
 
 
     @MockBean
-    private WebCrawlerService service;
+    private WebCrawlerService crawlerService;
+
+    @MockBean
+    private OperationService operationService;
 
     @Autowired
     private MockMvc mockMvc;
