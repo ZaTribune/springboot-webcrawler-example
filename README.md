@@ -29,7 +29,8 @@ what behaviour the program exhibits etc..
 ### Notes
 - This project uses an embedded "h2 database" locally.
 - Provided with spring boot actuator for monitoring & gathering metrics.
-- Current Configuration is for running locally, to configure the service 
+- Current configuration is for running this application locally, to configure the application for a different type of environment, you'll need to add/edit some config e.g things related to docker networking. Also, you could utilize spring profiles along with maven profiles to create different configurations based on your needs.
+
 
 ### Testing & Deployment
 - First, navigate to this docker-compose [file](https://github.com/ZaTribune/springboot-webcrawler-example/tree/master/src/main/local/docker-compose.yml) and initialize the environment using command:
